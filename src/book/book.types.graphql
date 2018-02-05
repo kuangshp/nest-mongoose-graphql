@@ -1,0 +1,51 @@
+# 定义输出类型
+type BookList {
+  _id: String,
+  name: String,
+  price: Float,
+}
+
+# 定义输出类型
+type BookInfo {
+  page: Int,
+  category: String,
+  publishingCompany: String,
+}
+
+# 定义输出类型
+type Book {
+  _id: String,
+  name: String,
+  bookList: [BookList],
+  info:BookInfo
+}
+
+# 定义Query
+type Query {
+  allBook: [Book],
+  getBookById(_id: String): Book
+}
+
+
+# 定义mutation
+type Mutation {
+  createBook(name: String!, bookList: [BookListInput], info: BookInfoInput): Book, # 创建书籍的Mutation
+  addBookList(_id: String, bookList: BookListInput): Book,                         # 根据id添加书籍列表的
+  addMoreBookList(_id: String, bookLists: [BookListInput]): Book,                  # 根据id一次添加多条数据  
+  popBookList(_id: String): Book,                                                  # 根据id删除booklist最后一条数据    
+  removeBookListOne(_id: String, bookListId: String): Book,                        # 删除指定位置的元素
+  updateArrayOne(_id: String, bookId: String, bookName: String): Book,             # 修改数组中指定元素的值
+}
+
+# 自己定义一个输入类型
+input BookListInput {
+  name: String,
+  price: Float,
+}
+
+# 定义一个输入类型
+input BookInfoInput {
+  page: Int,
+  category: String,
+  publishingCompany: String,
+}

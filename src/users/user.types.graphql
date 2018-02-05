@@ -1,0 +1,29 @@
+type User {
+  _id: String,
+  name: String,
+  email: String,
+  age: Int,
+  password: String,
+  createAt: String,
+  updateAt: String
+}
+
+# 定义查询的graphql
+type Query {
+  allUsers: [User],                         # 获取全部的用户
+  getUserByName(name: String!): User,       # 根据名字查询
+  getUserById(_id: String):User             # 根据id查询
+}
+
+# 定义Mutation的graphql
+type Mutation {
+  createUser(name: String!, email:String!,age:Int,password:String): User, # 创建用户
+  updateUser(
+    _id: String!,
+    name: String,
+    email: String,
+    age: Int,
+    password: String
+  ):User,                                                                 # 修改用户
+  deleteUser(_id: String!): User                                          # 删除用户
+}

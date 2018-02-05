@@ -1,0 +1,23 @@
+# 定义输出类型
+type Address {
+  address: String,
+  mobile: String,
+  userId: UserInfo, # 注意这个地方是外键关联的
+}
+
+# 定义用户的输出类型
+type UserInfo {
+  _id: String,
+  name: String,
+  email: String,
+  createAt: String
+}
+# 定义mutation
+type Mutation  {
+  createAddress(userId: String, mobile: String, address: String): Address
+}
+
+# 定义Query
+type Query {
+  getUser(_id: String): Address
+}
